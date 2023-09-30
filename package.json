@@ -1,0 +1,25 @@
+{
+  "name": "blogging_site",
+  "version": "1.0.0",
+  "description": "a blogging site backend with full proof api for users and blogs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dheerajkumarsaw/Blogging_site.git"
+  },
+  "author": "dheeraj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dheerajkumarsaw/Blogging_site/issues"
+  },
+  "homepage": "https://github.com/Dheerajkumarsaw/Blogging_site#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3",
+    "nodemon": "^3.0.1"
+  }
+}
