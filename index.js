@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config()
+require("dotenv").config();
 /** Importing all the routes */
 const route = require("./routes");
 const app = express();
@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/** Connecting to Database */
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .then(() => console.log("MongoDB is connected"))
