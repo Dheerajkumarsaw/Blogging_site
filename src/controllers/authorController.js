@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const authorModel = require("../models/authorModel");
 const validation = require("../validators/validations");
 
@@ -27,10 +27,11 @@ const createAuthor = async function (req, res) {
         .status(400)
         .send({ status: false, message: "Please Enter Last Name" });
 
-    if (!validation.isValidString(title))
-      return res
-        .status(400)
-        .send({ status: false, message: "Please Enter Title" });
+    if (!validation.isValidEnum(title))
+      return res.status(400).send({
+        status: false,
+        message: "Title should be one of these Mr, Mrs, Miss",
+      });
 
     if (!validation.isValidEmail(email))
       return res
@@ -38,7 +39,7 @@ const createAuthor = async function (req, res) {
         .send({ status: false, message: "Please Enter valid Email" });
 
     // Password validation
-    if (!validation.isValidPass(password))
+    if (!validation.isValidPassword(password))
       return res
         .status(400)
         .send({ status: false, message: "Please Enter Your Password" });
@@ -50,7 +51,8 @@ const createAuthor = async function (req, res) {
         status: false,
         message: `Use different email or password`,
       });
-
+    /** hashing password and saving it  */
+    requestBody.password = await bcrypt.hash(password, 12);
     const createdAuthor = await authorModel.create(requestBody);
     res.status(201).send({
       status: true,

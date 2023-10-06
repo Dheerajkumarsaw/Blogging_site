@@ -1,7 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const authorModel = require("../model/authorModel");
-const blogModel = require("../model/blogModel");
-const moment = require("moment");
+const authorModel = require("../models/authorModel");
+const blogModel = require("../models/blogModel");
 
 const isValid = function (value) {
     if (typeof value === "undefined" || typeof value === null) return false

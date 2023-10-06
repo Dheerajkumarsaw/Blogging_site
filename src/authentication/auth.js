@@ -19,21 +19,20 @@ const login = async function (req, res) {
         .status(400)
         .send({ status: false, message: "Please Enter Email or Password" });
 
-    if (!validation.password(password))
+    if (!validation.isValidPassword(password))
       return res
         .status(400)
         .send({ status: false, message: "Please enter password" });
 
-    const isAuthorExist = await authorModel.findOne(requestBody);
+    const isAuthorExist = await authorModel.findOne({ email: email });
+    console.log(email, isAuthorExist);
     if (!isAuthorExist)
-      return res
-        .status(400)
-        .send({ status: false, message: " Register First" });
+      return res.status(400).send({ status: false, message: "Register First" });
 
     const token = jwt.sign(
       {
-        userId: author._id.toString(),
-        group: "group-5",
+        /** ?. option reading, to avoid error of reading of undefined */
+        userId: isAuthorExist?._id.toString(),
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(Date.now() / 1000) + 10 * 60 * 60,
       },
@@ -47,3 +46,5 @@ const login = async function (req, res) {
     res.status(500).send({ status: false, message: err.message });
   }
 };
+
+module.exports = { login };

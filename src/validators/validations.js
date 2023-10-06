@@ -26,7 +26,7 @@ const isValidObjectId = function (value) {
   return mongoose.Types.ObjectId.isValid(value);
 };
 
-const isValidPass = function (password) {
+const isValidPassword = function (password) {
   const regex = /^[0-9a-zA-Z!@#$%&*]{8,15}$/;
   return regex.test(password);
 };
@@ -44,7 +44,7 @@ module.exports = {
   isValidBody,
   isValidEmail,
   isValidObjectId,
-  isValidPass,
+  isValidPassword,
   isValidPhone,
   isValidPin,
   isValidString,
