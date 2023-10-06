@@ -18,7 +18,7 @@ router.post("/authors", authorController.createAuthor);
 
 // router.put("/blogs/:blogId", middleware.authentication, middleware.authorisation, blogController.updateBlog);
 
-// router.post("/login", authorController.login);
+router.post("/login", middleware.login);
 
 
 module.exports = router;
